@@ -97,7 +97,7 @@ body {
   max-width: calc(100% - 130px);
 }
 .incoming .details p{
-  background: #fff;
+  background: white;
   color: #333;
   border-radius: 18px 18px 18px 0;
 }
@@ -225,4 +225,46 @@ body {
 
 .msg-quick-reply::-webkit-scrollbar {
   width: 0px;
+}
+
+
+
+.button_bot_response{
+  padding: 5px 7px;
+margin-bottom: 5px;
+background: transparent;
+color: white;
+border-radius: 15px;
+border-color: white;
+cursor: pointer;
+}
+
+.incoming1 .details1 p {
+  background-color: transparent;
+ 
+}
+
+.chat-box .incoming1{
+  display: flex;
+  align-items: flex-end;
+}
+
+
+
+.chat-box .incoming1 .details1{
+  max-width: 265px;
+}
+
+
+.chat-box .outgoing_subbutton{
+  display: flex;
+}
+.chat-box .outgoing_subbutton .details_subbutton{
+  margin-left: auto;
+  max-width: calc(100% - 200px);
+}
+.outgoing_subbutton .details_subbutton .user-msg-subbutton{
+  background: #333;
+  color: #fff;
+  border-radius: 18px 18px 0 18px;
 }

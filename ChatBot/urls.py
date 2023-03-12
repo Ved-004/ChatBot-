@@ -18,7 +18,8 @@ from django.urls import path
 from ChatBot import views
 
 urlpatterns = [
-    path('',views.heropage),#as we have to call this age impicitly
+    path('',views.heropage),#as we have to call this page impicitly
     path('chatpage/',views.chatpage),#static url
-    path('buttonmsg/<str:button_id>/',views.buttonmsg,name='buttonmsg') #dynamic url if we dont know which value will be there the dont write it
+    path('buttonmsg/<str:buttonName>/',views.buttonmsg,name='buttonmsg'), #dynamic url if we dont know which value will be there the dont write it
+    path('subbuttonmsg/<str:corekey>/<str:content>/',views.subbuttonmsg,name='subbuttonmsg')
 ]

@@ -12,13 +12,19 @@ def chatpage(request):
     return render(request,"Chat.html")
     
 
-def buttonmsg(request,button_id):
-    with open('static\keyword.json','r') as f:
+def buttonmsg(request,buttonName):
+    with open('static/javascript/keyword.json','r') as f:
         data = json.load(f)
     mylist=[]
-    for i in data[button_id]:
+    for i in data[buttonName]:
         mylist.append(i)
-        #list.append('\n')
-        mylist_json = json.dumps(mylist)
+    mylist.append(buttonName)
+    mylist_json = json.dumps(mylist)
     return JsonResponse({'mylist':mylist_json})
-        
+     
+def subbuttonmsg(request,corekey,content):
+    with open('static/javascript/keyword.json','r') as f:
+        data = json.load(f) 
+    subbuttonresponse=data[corekey][content]
+    ans=json.dumps(subbuttonresponse)
+    return JsonResponse({'subbuttonresponse':ans})
