@@ -1,7 +1,6 @@
 // Global variables
 
 let jsonData = [];
-// let exchgData
 var buttonName;
 var mylist = [];
 var content;
