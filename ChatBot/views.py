@@ -73,28 +73,20 @@ def keywordMsg(request,selectedValue):
 def addElement(request,subKeyVal,inputField,textField):
     with open('static/javascript/keyword.json','r')as f:
         data=json.load(f)
-    flag = 0 
-    if subKeyVal in data:
-        if inputField in data[subKeyVal]:
-            a="Error: Subkeyword already exists."
-            flag = 1
-            return JsonResponse({"success": False, "message": "Subkeyword already exists."})
-        else:
-            data[subKeyVal][inputField] = textField
+
+    if subKeyVal in data and inputField in data[subKeyVal]:
+        a="Error: Subkeyword already exists."
+        return JsonResponse({"success": False, "message": "Subkeyword already exists."})
+
+    for i in data:
+        if(subKeyVal==i):
+            data[subKeyVal][inputField]=textField
             a="Added successfully"
-            flag = 2
-            return JsonResponse({"success": True, "message": "Subkeyword added successfully."})
-    else:
-        data[subKeyVal] = {inputField: textField}
-        with open('static/javascript/keyword.json', 'w') as f:
-            json.dump(data, f)
-        a="Added successfully"
-        flag = 2
-        return JsonResponse({"success": True, "message": "Subkeyword added successfully."})
 
-        
+    with open('static/javascript/keyword.json', 'w') as f:
+        json.dump(data, f)
+    return JsonResponse({"success": True, "message": "Subkeyword added successfully."})
 
-        
 
 def deleteElement(request,subKeyVal,inputField):
     

@@ -29,7 +29,7 @@ urlpatterns = [
     path('adminp/delete/',views.delete, name="delete"),
     path('coreKeyword/',views.majorKeywordRetrival),
     path('keywordMsg/<str:selectedValue>/',views.keywordMsg,name='keywordMsg'),
-    path('addElement/<str:subKeyVal>/<str:inputField>/<str:textField>/',views.addElement,name='addElement'),
+    path('addElement/<str:subKeyVal>/<str:inputField>/<str:textField>/',views.addCheck,name='addCheck'),
     path('deleteElement/<str:subKeyVal>/<str:inputField>/',views.deleteElement,name='deleteElement'),
     path('updatedKey/<str:subKeyVal>/<str:inputField>/<str:updatedKey>/', views.keyupdate, name='updatedKey'),
     path('updatedAns/<str:subKeyVal>/<str:inputField>/<str:updatedAnswer>/', views.ansupdate, name='updatedAns')

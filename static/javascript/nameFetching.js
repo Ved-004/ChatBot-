@@ -36,10 +36,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
 // new Subkeyword storing
 
 function inputFetch() {
-  const form = document.getElementById("myForm");
   const inputField = document.getElementById("subKey").value;
   const textField = document.getElementById("textArea").value;
   const subKeyVal = document.getElementById("coreKey").value;
+  const result = document.getElementById("result")
 
   if (subKeyVal === "" || inputField === "" || textField === "") {
     alert("Choose options!");
@@ -50,16 +50,22 @@ function inputFetch() {
     fetch("/addElement/" + subKeyVal + "/" + inputField + "/" + textField + "/")
     .then((response) => response.json())
     .then((data) => {
+
+      // console.log(data.message);
+
+      
       if (data.success) {
-        // result.innerText = data.message
-        // alert(data.message);
-        console.log(data.message)
-        console.log(data.success)
+        result.innerText = data.message
+        console.log(data.message);
+
+        // console.log("added successfully")
+        // console.log(data.success)
+        
       } else {
         // alert(data.message);
-        // result.innerText = data.message
-        console.log(data.message)
-        console.log(data.success)
+        result.innerText = data.message
+        console.log("already exists")
+        // console.log(data.success)
       }
     })
   }
