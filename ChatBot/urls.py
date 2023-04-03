@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from ChatBot import views
+from django.conf import settings
+
 
 urlpatterns = [
     path('',views.heropage),#as we have to call this page impicitly
