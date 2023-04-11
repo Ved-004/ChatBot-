@@ -21,6 +21,7 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
+    path('rasachat/<str:inputValue>/', views.rasachat, name='rasachat'),
     path('',views.heropage),#as we have to call this page impicitly
     path('chatpage/',views.chatpage),#static url
     path('buttonmsg/<str:buttonName>/',views.buttonmsg,name='buttonmsg'), #dynamic url if we dont know which value will be there the dont write it
@@ -36,7 +37,7 @@ urlpatterns = [
     path('deleteElement/<str:subKeyVal>/<str:inputField>/',views.deleteElement,name='deleteElement'),
     path('updatedKey/<str:subKeyVal>/<str:inputField>/<str:updatedKey>/', views.keyupdate, name='updatedKey'),
     path('updatedAns/<str:subKeyVal>/<str:inputField>/<str:updatedAnswer>/', views.ansupdate, name='updatedAns')
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] 
 
 # serve static files during development
 # if settings.DEBUG:

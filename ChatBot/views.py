@@ -2,6 +2,55 @@ from django.http import HttpResponse  # used to give response to browser(text ba
 from django.shortcuts import render
 from django.http import JsonResponse
 import json
+from rasa.core.agent import Agent
+import requests
+#rasa run --enable-api
+model_path = './RasaBot/models'
+agent = Agent.load(model_path)
+
+
+# def rasa_chat(request,inputValue):
+#     response = agent.handle_text("Hii")
+#     bot_response = response[0]['text']
+#     print(bot_response)
+#     return JsonResponse({'msg': bot_response})
+
+# def rasachat(request, inputValue):
+#     # Construct the API endpoint URL
+#     api_url = "http://localhost:5005/webhooks/rest/webhook"
+    
+#     # Construct the payload for the Rasa API request
+#     payload = {
+#         "sender": "user",
+#         "message": inputValue
+#     }
+    
+#     # Send the request to the Rasa API using the POST method
+#     response = requests.post(api_url, json=payload)
+    
+#     # Parse the response JSON and extract the message text
+#     response_data = response.json()
+#     bot_message = response_data[0]["text"]
+        
+#     # Return the JSON response as a Django JsonResponse object
+#     return JsonResponse({"msg": bot_message})
+
+def rasachat(request, inputValue):
+    api_url = "http://localhost:5005/webhooks/rest/webhook"
+    payload = {"sender": "user", "message": inputValue}
+
+    try:
+        response = requests.post(api_url, json=payload)
+        response.raise_for_status()  # raise exception for non-200 responses
+        response_data = response.json()
+        bot_message = response_data[0]["text"]
+    except requests.exceptions.RequestException as e:
+        # handle HTTP or network errors
+        bot_message = f"Error: {str(e)}"
+    except (ValueError, KeyError, IndexError):
+        # handle invalid JSON or missing data errors
+        bot_message = "Sorry, there was an error processing your request."
+    return JsonResponse({"msg": bot_message})
 
 
 def heropage(request):
@@ -11,6 +60,8 @@ def heropage(request):
 def chatpage(request):
     return render(request,"Chat.html")
     
+
+
 
 def buttonmsg(request,buttonName):
     with open('static/javascript/keyword.json','r') as f:
